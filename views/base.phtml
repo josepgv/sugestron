@@ -1,7 +1,8 @@
+<?php $config = \Suggestotron\Config::get('site'); ?>
 <!doctype html>
 <html>
 <head>
-    <title>Suggestotron</title>
+    <title><?php echo $config["title"];?></title>
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
     <script type="text/javascript" src="../public/js/jquery.min.js"></script>
     <script type="text/javascript" src="../public/js/bootstrap.min.js"></script>

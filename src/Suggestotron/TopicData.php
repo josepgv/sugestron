@@ -9,7 +9,9 @@ class TopicData {
     }
 
     public function connect() {
-        $this->connection = new \PDO("mysql:host=localhost;dbname=suggestotron", "root", "123");
+        $config = \Suggestotron\Config::get('database');
+
+        $this->connection = new \PDO("mysql:host=".$config['hostname'].";dbname=".$config['dbname'], $config['username'], $config['password']);
     }
 
     public function getAllTopics() {

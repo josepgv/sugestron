@@ -5,7 +5,11 @@ namespace Suggestotron;
 
 class Autoloader {
     public function load($className) {
-        $file = __DIR__ . "/../" . str_replace("\\","/",$className) . ".php";
+
+        $config = \Suggestotron\Config::get('autoload');
+
+
+        $file = $config['class_path'] . '/' . str_replace("\\", "/", $className) . '.php';
 
         if(file_exists($file)) {
             require $file;
