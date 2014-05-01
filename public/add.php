@@ -13,6 +13,13 @@ if(isset($_POST) && sizeof($_POST) > 0) {
 
 ?>
 
+<!doctype html>
+<html>
+<head>
+    <title>Suggestotron</title>
+</head>
+<body>
+
 <h2>Add a topic</h2>
 
 <form action="add.php" method="POST">
@@ -27,6 +34,6 @@ if(isset($_POST) && sizeof($_POST) > 0) {
     <br>
     <input type="submit" value="Add!">
 </form>
-<?php
 
-xdebug_var_dump($_POST);
+</body>
+</html>

@@ -32,6 +32,13 @@ if($topic === false) {
 
 ?>
 
+<!doctype html>
+<html>
+<head>
+    <title>Suggestotron</title>
+</head>
+<body>
+
 <h2>Edit a topic</h2>
 
 <form action="edit.php" method="POST">
@@ -47,3 +54,5 @@ if($topic === false) {
     <input type="hidden" name="id" value="<?php echo $topic["id"];?>">
     <input type="submit" value="Edit!">
 </form>
+</body>
+</html>
