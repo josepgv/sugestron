@@ -1,5 +1,4 @@
 <?php
-
 require_once '../src/Suggestotron/Config.php';
 \Suggestotron\Config::setDirectory('../config');
 
