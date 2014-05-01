@@ -1,21 +1,21 @@
 <?php
-
 namespace Suggestotron;
-
 
 class Config {
     static public $directory;
     static public $config = [];
 
-    static public function setDirectory($path) {
+    static public function setDirectory($path)
+    {
         self::$directory = $path;
     }
 
-    static public function get($whichConfig) {
-        $whichConfig = strtolower($whichConfig);
+    static public function get($config)
+    {
+        $config = strtolower($config);
 
-        self::$config[$whichConfig] = require self::$directory . '/' . $whichConfig . '.php';
+        self::$config[$config] = require self::$directory . '/' . $config . '.php';
 
-        return self::$config[$whichConfig];
+        return self::$config[$config];
     }
-} 
+}

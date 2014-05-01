@@ -1,2 +1,5 @@
 <?php
-return ['class_path' => realpath("../src")];
+return [
+    'class_path' => realpath('../src')
+];
+?>
