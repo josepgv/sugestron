@@ -6,7 +6,7 @@ if(isset($_POST) && sizeof($_POST) > 0) {
     $data = new TopicData();
     $data->add($_POST);
 
-    header("Location: /suggestron/public");
+    header("Location: /sugestron/public");
     exit;
 }
 
