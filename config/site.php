@@ -2,5 +2,6 @@
 
 
 return [
-    "title" => "Suggestotron"
+    "title" => "Suggestotron",
+    "view_path" => realpath("../views")
 ];
