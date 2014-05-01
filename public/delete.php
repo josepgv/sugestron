@@ -1,6 +1,6 @@
 <?php
 
-require("../src/Suggestotron/TopicData.php");
+require '../src/Suggestotron/Autoloader.php';
 
 if(!isset($_GET["id"]) || empty($_GET["id"]) || !is_numeric($_GET["id"])) {
     echo "You must specify a numeric ID";

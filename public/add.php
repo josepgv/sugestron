@@ -1,7 +1,6 @@
 <?php
 
-require("../src/Suggestotron/TopicData.php");
-require("../src/Suggestotron/Template.php");
+require '../src/Suggestotron/Autoloader.php';
 
 if(isset($_POST) && sizeof($_POST) > 0) {
     $data = new \Suggestotron\TopicData();
