@@ -3,16 +3,14 @@
 namespace Suggestotron\Controller;
 
 
-class Topics {
+class Topics extends \Suggestotron\Controller{
 
     protected $data;
-    protected $template;
-    protected $config;
+
 
     public function __construct() {
-        $this->config = \Suggestotron\Config::get('site');
+        parent::__construct();
         $this->data = new \Suggestotron\TopicData();
-        $this->template = new \Suggestotron\Template($this->config['view_path'] . "/base.phtml");
     }
 
     public function listAction() {
@@ -30,7 +28,8 @@ class Topics {
         $this->render("index/add.html");
     }
 
-    public function editAction() {
+    public function editAction($options) {
+
         if(isset($_POST["id"]) && !empty($_POST["id"])) {
             if($this->data->update($_POST)) {
                 header("Location: /");
@@ -42,13 +41,13 @@ class Topics {
             }
         }
 
-        if(!isset($_GET["id"]) || empty($_GET["id"]) || !is_numeric($_GET["id"])){
+        if(!isset($options["id"]) || empty($options["id"])){
             echo "You must specify a numeric ID";
             exit;
         }
 
 
-        $topic = $this->data->getTopic($_GET["id"]);
+        $topic = $this->data->getTopic($options['id']);
 
         if($topic === false) {
             echo "Could not find specified ID";
@@ -58,9 +57,9 @@ class Topics {
         $this->render("index/edit.html", array('topic' => $topic));
     }
 
-    public function deleteAction() {
-        $id = $_GET["id"];
-        if(!isset($id) || empty($id) || !is_numeric($id)) {
+    public function deleteAction($options) {
+        $id = $options['id'];
+        if(!isset($id) || empty($id)) {
             echo "You must specify a numeric ID";
             exit;
         }
@@ -79,10 +78,5 @@ class Topics {
         else {
             echo "An error occurred";
         }
-    }
-
-    public function render($template, $data = array()) {
-
-        $this->template->render($this->config['view_path'] . "/" . $template, $data);
     }
 } 
