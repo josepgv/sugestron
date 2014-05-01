@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: josep
- * Date: 1/05/14
- * Time: 11:19
- */
+
 
 class TopicData {
     protected $connection;
@@ -76,4 +71,12 @@ class TopicData {
         return $query->execute($querydata);
     }
 
+    public function delete($id) {
+        $query = $this->connection->prepare(
+            "DELETE FROM topics WHERE id = :id LIMIT 1"
+        );
+
+        $querydata = [':id' => $id];
+        return $query->execute($querydata);
+    }
 } 
