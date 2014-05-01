@@ -24,6 +24,17 @@ class TopicData {
         return $query;
     }
 
+    public function getTopic($id) {
+        $query = $this->connection->prepare("SELECT * FROM topics WHERE id = :id LIMIT 1");
+
+        $values = [':id' => $id];
+
+        $query->execute($values);
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+
+    }
+
     public function add($data) {
 
         $query = $this->connection->prepare(
@@ -44,6 +55,25 @@ class TopicData {
         ];
 
         $query->execute($querydata);
+    }
+
+    public function update($data) {
+        $query = $this->connection->prepare(
+            "UPDATE topics
+            SET
+                title        = :title,
+                description  = :description
+            WHERE
+                id = :id"
+        );
+
+        $querydata = [
+            ':title'        => $data["title"],
+            ':description'  => $data["description"],
+            ':id'           => $data["id"]
+        ];
+
+        return $query->execute($querydata);
     }
 
 } 

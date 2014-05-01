@@ -18,4 +18,5 @@ foreach($topics as $topic) {
     echo "<p>";
     echo nl2br($topic["description"]);
     echo "</p>";
+    echo "<p><a href='edit.php?id=" . $topic["id"] . "'>Edit</a></p>";
 }
