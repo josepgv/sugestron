@@ -1,0 +1,16 @@
+<?php $topic = $this->topic;?>
+<h2>Edit a topic</h2>
+
+<form action="edit.php" method="POST">
+    <label>
+        Title: <input type="text" name="title" value="<?php echo $topic["title"];?>">
+    </label>
+    <br>
+    <label>
+        Description <br>
+        <textarea name="description" cols="50" rows="20"><?php echo $topic["description"];?></textarea>
+    </label>
+    <br>
+    <input type="hidden" name="id" value="<?php echo $topic["id"];?>">
+    <input type="submit" value="Edit!">
+</form>

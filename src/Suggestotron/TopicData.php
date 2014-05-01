@@ -9,7 +9,7 @@ class TopicData {
     }
 
     public function connect() {
-        $this->connection = new PDO("mysql:host=localhost;dbname=suggestotron", "root", "123");
+        $this->connection = new \PDO("mysql:host=localhost;dbname=suggestotron", "root", "123");
     }
 
     public function getAllTopics() {
@@ -26,7 +26,7 @@ class TopicData {
 
         $query->execute($values);
 
-        return $query->fetch(PDO::FETCH_ASSOC);
+        return $query->fetch(\PDO::FETCH_ASSOC);
 
     }
 
