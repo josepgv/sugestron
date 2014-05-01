@@ -1,5 +1,5 @@
 <?php
-
+namespace Suggestotron;
 
 class TopicData {
     protected $connection;
