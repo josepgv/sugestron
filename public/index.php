@@ -1,19 +1,15 @@
 <?php
-//require '../src/Suggestotron/Autoloader.php';
-
 require_once '../src/Suggestotron/Config.php';
 \Suggestotron\Config::setDirectory('../config');
-$config = \Suggestotron\Config::get('autoload');
 
+$config = \Suggestotron\Config::get('autoload');
 require_once $config['class_path'] . '/Suggestotron/Autoloader.php';
 
+if (!isset($_SERVER['PATH_INFO']) || empty($_SERVER['PATH_INFO']) || $_SERVER['PATH_INFO'] == '/') {
+    $route = 'list';
+} else {
+    $route = $_SERVER['PATH_INFO'];
+}
 
-
-
-$data = new \Suggestotron\TopicData();
-$data->connect();
-
-$topics = $data->getAllTopics();
-
-$template = new \Suggestotron\Template("../views/base.phtml");
-$template->render("../views/index/index.html", array('topics' => $topics));
+$router = new \Suggestotron\Router();
+$router->start($route);
