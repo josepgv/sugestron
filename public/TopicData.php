@@ -9,6 +9,10 @@
 class TopicData {
     protected $connection;
 
+    public function __construct() {
+        $this->connect();
+    }
+
     public function connect() {
         $this->connection = new PDO("mysql:host=localhost;dbname=suggestotron", "root", "123");
     }
@@ -18,6 +22,28 @@ class TopicData {
         $query->execute();
 
         return $query;
+    }
+
+    public function add($data) {
+
+        $query = $this->connection->prepare(
+        "INSERT INTO topics (
+          title,
+          description
+        )
+        VALUES
+        (
+          :title,
+          :description
+        )"
+        );
+
+        $querydata = [
+            ':title'        => $data["title"],
+            ':description'  => $data["description"]
+        ];
+
+        $query->execute($querydata);
     }
 
 } 
