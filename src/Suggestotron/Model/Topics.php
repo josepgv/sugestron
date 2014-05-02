@@ -5,7 +5,13 @@ class Topics {
 
     public function getAllTopics()
     {
-        $query = \Suggestotron\Db::getInstance()->prepare("SELECT * FROM topics");
+        $query = \Suggestotron\Db::getInstance()->prepare(
+            "SELECT topics.*, votes.count
+            FROM topics INNER JOIN votes
+            ON (topics.id = votes.topic_id)
+            ORDER BY
+            votes.count DESC, topics.title ASC"
+        );
         $query->execute();
 
         return $query;
@@ -40,6 +46,23 @@ class Topics {
 	    ];
 
 	    $query->execute($data);
+
+        $lastId = \Suggestotron\Db::getInstance()->lastInsertId();
+        $query = \Suggestotron\Db::getInstance()->prepare(
+            "
+            INSERT INTO votes (
+                topic_id,
+                count
+            )
+            VALUES (
+                :id,
+                0
+            )
+            "
+        );
+        $data = [':id' => $lastId];
+
+        $query->execute($data);
 	}
 
 	public function update($data)
@@ -74,6 +97,13 @@ class Topics {
 	    ];
 
 	    return $query->execute($data);
+
+        $query = \Suggestotron\Db::getInstance()->prepare(
+            " DELETE FROM votes WHERE id = :id"
+        );
+        $data = [':id' => $id]; // not really needed because it's defined before but kept for clarity
+        $query->execute($data);
+
 	}
 }
 ?>
